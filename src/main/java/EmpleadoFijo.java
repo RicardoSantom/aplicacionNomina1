@@ -6,20 +6,24 @@
 
 /**
  *
- * @author daw1
+ * @author Ricardo Santiago Tomé
  */
 public class EmpleadoFijo extends Empleado{
 
     private float salario;
 
-    public EmpleadoFijo(float salario, String dni, String nombre) {
+    public EmpleadoFijo(String dni, String nombre, float salario ) {
         super(dni, nombre);
         this.salario = salario;
     }
 
+    public float getSalario() {
+        return salario;
+    }
+
     @Override
     public String toString() {
-        return  "salario=" + salario ;
+        return "EmpleadoFijo{" + "salario=" + salario + '}';
     }
     
     @Override

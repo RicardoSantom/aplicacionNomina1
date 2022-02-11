@@ -6,7 +6,7 @@
 
 /**
  *
- * @author daw1
+ * @author Ricardo Santiago Tomé
  */
 public class EmpleadoEventual extends Empleado{
 
@@ -19,6 +19,14 @@ public class EmpleadoEventual extends Empleado{
         this.horas = horas;
     }
 
+    public float getSalarioHora() {
+        return salarioHora;
+    }
+
+    public int getHoras() {
+        return horas;
+    }
+
     @Override
     public String toString() {
         return  salarioHora + "," + horas;
@@ -26,7 +34,7 @@ public class EmpleadoEventual extends Empleado{
     
     @Override
     public float ingresos() {
-        return salarioHora;
+        return salarioHora*horas;
     }
     
 }

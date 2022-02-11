@@ -9,7 +9,7 @@ import java.util.Objects;
 
 /**
  *
- * @author daw1
+ * @author Ricardo Santiago Tomé
  */
 public abstract class Empleado implements Comparable<Empleado>{
     private String dni;
@@ -64,10 +64,7 @@ public abstract class Empleado implements Comparable<Empleado>{
             return false;
         }
         final Empleado other = (Empleado) obj;
-        if (!Objects.equals(this.dni, other.dni)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.dni, other.dni);
     }
     
     public abstract float ingresos();

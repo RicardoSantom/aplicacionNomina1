@@ -1,6 +1,6 @@
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
 
 /*
@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author daw1
+ * @author Ricardo Santiago Tomé
  */
 public class SistemaNominas {
     private List<Empleado> empleados;
@@ -47,8 +47,19 @@ public class SistemaNominas {
     }
     
     public List<Empleado> listarEmpleadosPorSueldo(){
-        
-        return new ArrayList<> (empleados.sort(new ComparadorSueldo()));
+        /*empleados=new ArrayList<Empleado> (empleados);*/
+        ArrayList<Empleado> s = new ArrayList<>();
+        Collections.sort(s, new ComparadorSueldo());
+        return s;
+    }
+    
+     public float getTotalSalarios() {
+        float acumulador = 0;
+
+        for (Empleado e : empleados) {
+            acumulador += e.ingresos();
+        }
+        return acumulador;
     }
     
 }
