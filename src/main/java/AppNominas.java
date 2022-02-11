@@ -16,7 +16,7 @@ public class AppNominas {
         int opcion,opcion2;
         Scanner teclado = new Scanner(System.in);
         List<Empleado> listado;
-        Empleado empleado1, empleado2;
+        Empleado  empleado2;
         
         do {
             System.out.println("1.Crear empleado");
@@ -35,11 +35,14 @@ public class AppNominas {
             switch (opcion) {
                 case 1:
                     String dni,nombre;
+                    float salarioHora;
+                    int horas;
                     System.out.println("1.Crear empleado");
                     System.out.println("Introduzca dni:");
                     dni=teclado.nextLine();
                     System.out.println("Introduzca nombre:");
                     nombre=teclado.nextLine();
+                    Empleado empleado1= new EmpleadoEventual(dni,nombre,salarioHora,horas);
                     if(nominas.incluirEmpleado(empleado1)){
                         
                     }
