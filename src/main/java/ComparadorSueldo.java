@@ -6,25 +6,28 @@ import java.util.Comparator;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Ricardo Santiago Tomé
  */
-public class ComparadorSueldo implements Comparator<Empleado>{
+public class ComparadorSueldo implements Comparator<Empleado> {
 
     @Override
-    public int compare(Empleado o1, Empleado o2) {
+    public int compare(Empleado e1, Empleado e2) {
         int salida;
-        salida=0;
-        if(o1.ingresos()>o2.ingresos()){
-            salida=1;
-        }else{
-            if(o1.ingresos()<o2.ingresos()){
-                salida=-1;
+        salida = 0;
+        float sueldo1, sueldo2;
+        sueldo1 = e1.ingresos();
+        sueldo2 = e2.ingresos();
+
+        if (sueldo1 > sueldo2) {
+            salida = 1;
+        } else {
+            if (sueldo1 < sueldo2) {
+                salida = -1;
             }
         }
         return salida;
     }
-    
+
 }

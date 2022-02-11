@@ -6,14 +6,18 @@ import java.util.Objects;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Ricardo Santiago Tomé
  */
-public abstract class Empleado implements Comparable<Empleado>{
+public abstract class Empleado implements Comparable<Empleado> {
+
     private String dni;
     private String nombre;
+
+    public Empleado() {
+
+    }
 
     public Empleado(String dni, String nombre) {
         this.dni = dni;
@@ -22,7 +26,7 @@ public abstract class Empleado implements Comparable<Empleado>{
 
     @Override
     public String toString() {
-        return  dni + nombre ;
+        return dni + "," + nombre;
     }
 
     public String getDni() {
@@ -40,11 +44,11 @@ public abstract class Empleado implements Comparable<Empleado>{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    public int compareTo(Empleado empleado)
-    {   
+
+    public int compareTo(Empleado empleado) {
         return this.dni.compareTo(empleado.dni);
     }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -66,7 +70,7 @@ public abstract class Empleado implements Comparable<Empleado>{
         final Empleado other = (Empleado) obj;
         return Objects.equals(this.dni, other.dni);
     }
-    
+
     public abstract float ingresos();
-    
+
 }
