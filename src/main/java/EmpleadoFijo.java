@@ -31,7 +31,7 @@ public class EmpleadoFijo extends Empleado{
 
     @Override
     public String toString() {
-        return super.toString()+ salario ;
+        return super.toString()+ "," + salario ;
     }
     
     @Override

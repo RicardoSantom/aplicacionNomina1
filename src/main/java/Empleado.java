@@ -64,7 +64,7 @@ public abstract class Empleado implements Comparable<Empleado> {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (getClass() != obj.getClass() && !dni.equals(this.dni) ) {
             return false;
         }
         final Empleado other = (Empleado) obj;
