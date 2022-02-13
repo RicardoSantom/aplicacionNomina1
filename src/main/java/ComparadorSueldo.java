@@ -22,11 +22,10 @@ public class ComparadorSueldo implements Comparator<Empleado> {
 
         if (sueldo1 > sueldo2) {
             salida = 1;
-        } else {
-            if (sueldo1 < sueldo2) {
-                salida = -1;
-            }
+        } else if (sueldo1 < sueldo2) {
+            salida = -1;
         }
+
         return salida;
     }
 
