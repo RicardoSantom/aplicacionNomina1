@@ -64,12 +64,15 @@ public abstract class Empleado implements Comparable<Empleado> {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass() && !dni.equals(this.dni) ) {
-            return false;
+        if (obj instanceof Empleado){
+            Empleado other= (Empleado) obj;
+            if(Objects.equals(this.dni, other.dni)){
+                return true;
+            }
         }
-        final Empleado other = (Empleado) obj;
-        return Objects.equals(this.dni, other.dni);
+        return false;
     }
+
 
     public abstract float ingresos();
 

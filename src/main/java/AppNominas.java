@@ -85,9 +85,18 @@ public class AppNominas {
                 case 4:
                     System.out.println("4.Eliminar empleado");
                     System.out.println("Introduzca dni del empleado.");
-                    if (sn.getEmpleado(dni = teclado.nextLine()) != null) {
-                        sn.eliminarEmpleado(sn.getEmpleado(dni));
-                        System.out.println("Empleado eliminado.");
+                    Empleado desempleado;
+                    desempleado=sn.getEmpleado(dni=teclado.nextLine());
+                    System.out.println(desempleado);
+                    if (desempleado != null) {
+                        System.out.println("¿Seguro que quiere eliminar este empleado?");
+                        String salida=teclado.nextLine();
+                        if(salida.equalsIgnoreCase("si")){
+                        sn.eliminarEmpleado(desempleado);
+                        System.out.println("Empleado eliminado.");   
+                        }else{
+                            System.out.println("No se ha eliminado este empleado.");
+                        }
                     } else {
                         System.out.println("No se ha encontrado un empleado con este dni.");
                     }
