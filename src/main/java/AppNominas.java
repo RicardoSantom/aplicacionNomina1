@@ -81,20 +81,20 @@ public class AppNominas {
                     }
                     System.out.println("-------------------------------------");
                     break;
-                    
+
                 case 4:
                     System.out.println("4.Eliminar empleado");
                     System.out.println("Introduzca dni del empleado.");
                     Empleado desempleado;
-                    desempleado=sn.getEmpleado(dni=teclado.nextLine());
+                    desempleado = sn.getEmpleado(dni = teclado.nextLine());
                     System.out.println(desempleado);
                     if (desempleado != null) {
                         System.out.println("¿Seguro que quiere eliminar este empleado?");
-                        String salida=teclado.nextLine();
-                        if(salida.equalsIgnoreCase("si")){
-                        sn.eliminarEmpleado(desempleado);
-                        System.out.println("Empleado eliminado.");   
-                        }else{
+                        String salida = teclado.nextLine();
+                        if (salida.equalsIgnoreCase("si")) {
+                            sn.eliminarEmpleado(desempleado);
+                            System.out.println("Empleado eliminado.");
+                        } else {
                             System.out.println("No se ha eliminado este empleado.");
                         }
                     } else {
@@ -109,27 +109,27 @@ public class AppNominas {
                     }
                     System.out.println("-------------------------------------");
                     break;
-                    
+
                 case 6:
                     for (Empleado empleado1 : sn.listarEmpleadosPorSueldo()) {
                         System.out.println(empleado1.toString());
                     }
                     System.out.println("-------------------------------------");
                     break;
-                    
+
                 case 7:
                     for (Empleado empleado1 : sn.listarEmpleadosPorNombre()) {
                         System.out.println(empleado1.toString());
                     }
                     System.out.println("-------------------------------------");
                     break;
-                    
+
                 case 8:
                     System.out.println("8.Consultar total salarios");
                     System.out.println("Total salarios:" + sn.getTotalSalarios());
                     System.out.println("-------------------------------------");
                     break;
-                    
+
                 case 0:
                     System.out.println("Hasta pronto.");
                     break;

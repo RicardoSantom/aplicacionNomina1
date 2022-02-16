@@ -44,7 +44,7 @@ public class SistemaNominas {
 
 
     public boolean eliminarEmpleado(Empleado e) {
-        return empleados.remove(e.getDni(),e);
+        return empleados.remove(e.getDni())!=null;
     }
 
     public List<Empleado> listarEmpleados() {
