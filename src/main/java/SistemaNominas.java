@@ -4,7 +4,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 /**
  *
@@ -12,71 +14,59 @@ import java.util.Set;
  */
 public class SistemaNominas {
 
-    private Set<Empleado> empleados;
+    private Map<String,Empleado> empleados;
 
     public SistemaNominas() {
-        empleados = new HashSet<>();
+        empleados = new TreeMap<>();
     }
 
     public boolean incluirEmpleado(Empleado empleado) {
         boolean salida = false;
-        if (empleado != null && !empleados.contains(empleado)) {
-            salida = empleados.add(empleado);
+        if (empleados.putIfAbsent(empleado.getDni(), empleado)==null) {
+            salida = true;
         }
         return salida;
     }
 
-    public Set<Empleado> getEmpleados() {
+    public Map<String,Empleado> getEmpleados() {
         return empleados;
     }
 
     public Empleado getEmpleado(String dni) {
-        for (Empleado e : empleados) {
-            if (e.getDni().equals(dni)) {
-                return e;
-            }
+        if (empleados.containsKey(dni)){
+            return empleados.get(dni);
         }
         return null;
     }
 
-    public void setEmpleados(Set<Empleado> empleados) {
+      public void setEmpleados(Map<String,Empleado> empleados) {
         this.empleados = empleados;
     }
 
-    public boolean eliminarEmpleado(Empleado e) {
-        boolean salida;
-        salida = false;
 
-        if (e != null) {
-            salida = empleados.remove(e);
-        }
-        return salida;
+    public boolean eliminarEmpleado(Empleado e) {
+        return empleados.remove(e.getDni(),e);
     }
 
     public List<Empleado> listarEmpleados() {
-        List<Empleado> salida=new ArrayList<>(empleados);
-        Collections.sort(salida);
-        return salida;
-        //sin ordenar.
-        /*return new ArrayList<>(empleados);*/
+        return new ArrayList<>(empleados.values());
     }
 
     public List<Empleado> listarEmpleadosPorSueldo() {
-        List<Empleado> salida=null;
-        salida=new ArrayList<>(empleados);
-        Collections.sort(salida, new ComparadorSueldo());
-        return salida;
+        List<Empleado> lista = new ArrayList<>(empleados.values());
+        Collections.sort(lista, new ComparadorSueldo());
+        return lista;
     }
     
-    public List<Empleado> listarEmpleadosPorNombre(){
-         List<Empleado> salida=new ArrayList<>(empleados);
-        
+    public List<Empleado> listarEmpleadosPorNombre() {
+        List<Empleado> salida = new ArrayList<>(empleados.values());
+
         Collections.sort(salida, new Comparator<Empleado>() {
-             @Override
-             public int compare(Empleado o1, Empleado o2) {
-                 return o1.getNombre().compareTo(o2.getNombre());
-             }
-         });
+            @Override
+            public int compare(Empleado o1, Empleado o2) {
+                return o1.getNombre().compareTo(o2.getNombre());
+            }
+        });
         return salida;
     }
 
@@ -90,7 +80,7 @@ public class SistemaNominas {
             acumulador+=li.next().ingresos();
         }*/
 
-        for (Empleado e : empleados) {
+        for (Empleado e : empleados.values()) {
             acumulador += e.ingresos();
         }
         return acumulador;
