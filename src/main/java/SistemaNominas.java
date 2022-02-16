@@ -7,7 +7,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- *
+ *@version 1.3
+ * @since 16/02/2022
  * @author Ricardo Santiago Tomé
  */
 public class SistemaNominas {
