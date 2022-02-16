@@ -2,7 +2,9 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -10,10 +12,10 @@ import java.util.List;
  */
 public class SistemaNominas {
 
-    private List<Empleado> empleados;
+    private Set<Empleado> empleados;
 
     public SistemaNominas() {
-        empleados = new ArrayList<>();
+        empleados = new HashSet<>();
     }
 
     public boolean incluirEmpleado(Empleado empleado) {
@@ -24,7 +26,7 @@ public class SistemaNominas {
         return salida;
     }
 
-    public List<Empleado> getEmpleados() {
+    public Set<Empleado> getEmpleados() {
         return empleados;
     }
 
@@ -37,7 +39,7 @@ public class SistemaNominas {
         return null;
     }
 
-    public void setEmpleados(List<Empleado> empleados) {
+    public void setEmpleados(Set<Empleado> empleados) {
         this.empleados = empleados;
     }
 
