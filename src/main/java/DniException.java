@@ -10,7 +10,12 @@
  */
 public class DniException extends Exception{
 
-    public DniException() {
+    /**
+     *
+     * @param message
+     */
+    public DniException(String message) {
+        super(message);
     }
     
 }

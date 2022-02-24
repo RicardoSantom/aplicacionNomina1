@@ -12,35 +12,59 @@ import java.util.Objects;
  */
 public abstract class Empleado implements Comparable<Empleado> {
 
-    private String dni;
+    private Dni dni;
     private String nombre;
 
+    /**
+     *
+     */
     public Empleado() {
 
     }
 
-    public Empleado(String dni, String nombre) {
+    /**
+     *
+     * @param dni
+     * @param nombre
+     */
+    public Empleado(Dni dni, String nombre) {
         this.dni = dni;
         this.nombre = nombre;
     }
 
     @Override
     public String toString() {
-        return dni + "," + nombre;
+        return dni.toString() + "," + nombre;
     }
 
-    public String getDni() {
+    /**
+     *
+     * @return
+     */
+    public Dni getDni() {
         return dni;
     }
 
-    public void setDni(String dni) {
+    /**
+     *
+     * @param dni
+     */
+    public void setDni(Dni dni) {
         this.dni = dni;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     *
+     * @param nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -73,7 +97,10 @@ public abstract class Empleado implements Comparable<Empleado> {
         return false;
     }
 
-
+    /**
+     *
+     * @return
+     */
     public abstract float ingresos();
 
 }

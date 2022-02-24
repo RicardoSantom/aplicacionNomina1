@@ -8,11 +8,16 @@ import java.util.Scanner;
  */
 public class AppNominas {
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         SistemaNominas sn = new SistemaNominas();
         int opcion;
         Scanner teclado = new Scanner(System.in);
         List<Empleado> listado;
+        Dni dni2;
 
         do {
             System.out.println("1.Crear empleado fijo");
@@ -37,56 +42,74 @@ public class AppNominas {
                     float salarioHora,
                      salario;
                     int horas;
-                    System.out.println("1.Crear empleado fijo");
-                    System.out.println("Introduzca dni:");
-                    dni = teclado.nextLine();
-                    System.out.println("Introduzca nombre:");
-                    nombre = teclado.nextLine();
-                    System.out.println("Introduzca salario:");
-                    salario = teclado.nextFloat();
-                    if (sn.incluirEmpleado(new EmpleadoFijo(dni, nombre, salario))) {
-                        System.out.println("Empleado incluido en el sistema:");
-                    } else {
-                        System.out.println("No se ha podido incluir al empleado en el sistema:");
+                    try {
+                        System.out.println("1.Crear empleado fijo");
+                        System.out.println("Introduzca dni:");
+                        dni = teclado.nextLine();
+                        dni2 = Dni.valueOf(dni);
+                        System.out.println("Introduzca nombre:");
+                        nombre = teclado.nextLine();
+                        System.out.println("Introduzca salario:");
+                        salario = teclado.nextFloat();
+                        if (sn.incluirEmpleado(new EmpleadoFijo(dni2, nombre, salario))) {
+                            System.out.println("Empleado incluido en el sistema:");
+                        } else {
+                            System.out.println("No se ha podido incluir al empleado en el sistema:");
+                        }
+
+                    } catch (DniException ex) {
+                        System.out.println(ex.getMessage());
                     }
-                    System.out.println("-------------------------------------");
                     break;
 
                 case 2:
+                    try{
                     System.out.println("2.Crear empleado eventual");
                     System.out.println("Introduzca dni:");
                     dni = teclado.nextLine();
+                    dni2 = Dni.valueOf(dni);
                     System.out.println("Introduzca nombre:");
                     nombre = teclado.nextLine();
                     System.out.println("Introduzca salarioHora:");
                     salarioHora = teclado.nextFloat();
                     System.out.println("Introduzca número de horas:");
                     horas = teclado.nextInt();
-                    if (sn.incluirEmpleado(new EmpleadoEventual(dni, nombre, salarioHora, horas))) {
+                    if (sn.incluirEmpleado(new EmpleadoEventual(dni2, nombre, salarioHora, horas))) {
                         System.out.println("Empleado incluido en el sistema.");
                     } else {
                         System.out.println("No se ha podido incluir al empleado en el sistema.");
                     }
                     System.out.println("-------------------------------------");
+                    }catch(DniException ex){
+                        System.out.println(ex.getMessage());
+                    }
                     break;
 
-                case 3:
+                 case 3:
+                     try{
                     System.out.println("3.Consultar empleado");
                     System.out.println("Introduzca dni para consultar empleado.");
                     dni = teclado.nextLine();
-                    if (sn.getEmpleado(dni) != null) {
-                        System.out.println(sn.getEmpleado(dni));
+                    dni2 = Dni.valueOf(dni);
+                    if (sn.getEmpleado(dni2) != null) {
+                        System.out.println(sn.getEmpleado(dni2));
                     } else {
                         System.out.println("No se ha encontrado un empleado con este dni.");
                     }
                     System.out.println("-------------------------------------");
+                     }catch(DniException ex){
+                        System.out.println(ex.getMessage());
+                    }
                     break;
 
                 case 4:
+                    try{
                     System.out.println("4.Eliminar empleado");
                     System.out.println("Introduzca dni del empleado.");
                     Empleado desempleado;
-                    desempleado = sn.getEmpleado(dni = teclado.nextLine());
+                    dni=teclado.nextLine();
+                    dni2 = Dni.valueOf(dni);
+                    desempleado = sn.getEmpleado(dni2);
                     System.out.println(desempleado);
                     if (desempleado != null) {
                         System.out.println("¿Seguro que quiere eliminar este empleado?");
@@ -101,6 +124,9 @@ public class AppNominas {
                         System.out.println("No se ha encontrado un empleado con este dni.");
                     }
                     System.out.println("-------------------------------------");
+                    }catch(DniException ex){
+                        System.out.println(ex.getMessage());
+                    }
                     break;
 
                 case 5:
@@ -109,7 +135,6 @@ public class AppNominas {
                     }
                     System.out.println("-------------------------------------");
                     break;
-
                 case 6:
                     for (Empleado empleado1 : sn.listarEmpleadosPorSueldo()) {
                         System.out.println(empleado1.toString());

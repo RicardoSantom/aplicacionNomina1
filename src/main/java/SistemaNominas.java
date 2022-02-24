@@ -13,12 +13,20 @@ import java.util.TreeMap;
  */
 public class SistemaNominas {
 
-    private Map<String,Empleado> empleados;
+    private Map<Dni,Empleado> empleados;
 
+    /**
+     *
+     */
     public SistemaNominas() {
         empleados = new TreeMap<>();
     }
 
+    /**
+     *
+     * @param empleado
+     * @return
+     */
     public boolean incluirEmpleado(Empleado empleado) {
         boolean salida = false;
         if (empleados.putIfAbsent(empleado.getDni(), empleado)==null) {
@@ -27,36 +35,75 @@ public class SistemaNominas {
         return salida;
     }
 
-    public Map<String,Empleado> getEmpleados() {
+    /**
+     *
+     * @return
+     */
+    public Map<Dni,Empleado> getEmpleados() {
         return empleados;
     }
 
-    public Empleado getEmpleado(String dni) {
+    /**
+     *
+     * @param dni
+     * @return
+     */
+    public Empleado getEmpleado(Dni dni) {
         if (empleados.containsKey(dni)){
             return empleados.get(dni);
         }
         return null;
     }
+    
+    /**
+     *
+     * @param dni
+     * @return
+     * @throws DniException
+     */
+    public Empleado getEmpleado(String dni) throws DniException{
+            return empleados.get(Dni.valueOf(dni));
+    }
 
-      public void setEmpleados(Map<String,Empleado> empleados) {
+    /**
+     *
+     * @param empleados
+     */
+    public void setEmpleados(Map<Dni,Empleado> empleados) {
         this.empleados = empleados;
     }
 
-
+    /**
+     *
+     * @param e
+     * @return
+     */
     public boolean eliminarEmpleado(Empleado e) {
         return empleados.remove(e.getDni())!=null;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Empleado> listarEmpleados() {
         return new ArrayList<>(empleados.values());
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Empleado> listarEmpleadosPorSueldo() {
         List<Empleado> lista = new ArrayList<>(empleados.values());
         Collections.sort(lista, new ComparadorSueldo());
         return lista;
     }
     
+    /**
+     *
+     * @return
+     */
     public List<Empleado> listarEmpleadosPorNombre() {
         List<Empleado> salida = new ArrayList<>(empleados.values());
 
@@ -69,6 +116,10 @@ public class SistemaNominas {
         return salida;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getTotalSalarios() {
         float acumulador = 0;
         

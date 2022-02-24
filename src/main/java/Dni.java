@@ -17,33 +17,67 @@ public class Dni implements Comparable<Dni>{
     private String numero;
     private char letra;
 
+    /**
+     *
+     */
     public Dni() {
     }
 
-    public Dni(String numero, char letra) {
+    /**
+     *
+     * @param numero
+     * @param letra
+     * @throws DniException
+     */
+    public Dni(String numero, char letra) throws DniException {
         if(!esValido(numero+letra)){
-            throw new DniException("Formato incorrecto de DNI")
+            throw new DniException("Formato incorrecto DNI");
         }
         this.numero = numero;
         this.letra = letra;
     }
 
-    public Dni(String Dni) {
-        
+    /**
+     *
+     * @param dni
+     * @throws DniException
+     */
+    public Dni(String dni) throws DniException {
+        if(!esValido(dni)){
+            throw new DniException("Formato incorrecto DNI");
+        }
+        this.numero=(dni.substring(0,7));
+        this.letra=(dni.charAt(8));
     }
-
+    
+    /**
+     *
+     * @return
+     */
     public String getNumero() {
         return numero;
     }
 
+    /**
+     *
+     * @param numero
+     */
     public void setNumero(String numero) {
         this.numero = numero;
     }
 
+    /**
+     *
+     * @return
+     */
     public char getLetra() {
         return letra;
     }
 
+    /**
+     *
+     * @param letra
+     */
     public void setLetra(char letra) {
         this.letra = letra;
     }
@@ -78,7 +112,17 @@ public class Dni implements Comparable<Dni>{
     }
     @Override
     public int compareTo(Dni o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.numero.compareTo(o.numero);
+    }
+    
+    /**
+     *
+     * @param dni
+     * @return
+     * @throws DniException
+     */
+    public static Dni valueOf(String dni) throws DniException{
+        return new Dni(dni);
     }
 
     @Override
@@ -86,11 +130,16 @@ public class Dni implements Comparable<Dni>{
         return  numero + letra;
     }
     
+    /**
+     *
+     * @param dni
+     * @return
+     */
     public static boolean esValido(String dni){
         boolean correcto=false;
         int resto;
         String letras="TRWAGMYFPDXBNJZSQVHLCKE";
-        String patron="([0-9]{8})([A->]})";
+        String patron="([0-9]{8})([A-Z])";
         Pattern p=Pattern.compile(patron);
         Matcher m=p.matcher(dni);
         if(m.matches()){
