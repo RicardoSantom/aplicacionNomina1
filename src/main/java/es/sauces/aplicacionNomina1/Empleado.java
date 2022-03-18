@@ -1,4 +1,7 @@
+package es.sauces.aplicacionNomina1;
 
+
+import java.io.Serializable;
 import java.util.Objects;
 
 /*
@@ -10,7 +13,7 @@ import java.util.Objects;
  *
  * @author Ricardo Santiago Tomé
  */
-public abstract class Empleado implements Comparable<Empleado> {
+public abstract class Empleado implements Comparable<Empleado>,Serializable {
 
     private Dni dni;
     private String nombre;

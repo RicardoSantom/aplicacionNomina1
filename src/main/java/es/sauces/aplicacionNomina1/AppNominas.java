@@ -1,4 +1,13 @@
+package es.sauces.aplicacionNomina1;
 
+
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,6 +27,7 @@ public class AppNominas {
         Scanner teclado = new Scanner(System.in);
         List<Empleado> listado;
         Dni dni2;
+        String archivo;
 
         do {
             System.out.println("1.Crear empleado fijo");
@@ -28,6 +38,8 @@ public class AppNominas {
             System.out.println("6.Listar empleados (SUELDO)");
             System.out.println("7.Listar empleados (NOMBRE)");
             System.out.println("8.Consultar total salarios");
+            System.out.println("9.Guardar empleados");
+            System.out.println("10.Cargar empleados");
             System.out.println("0.Salir");
             System.out.println("Introduzca opcion:");
             while (!teclado.hasNextInt()) {
@@ -63,7 +75,7 @@ public class AppNominas {
                     break;
 
                 case 2:
-                    try{
+                    try {
                     System.out.println("2.Crear empleado eventual");
                     System.out.println("Introduzca dni:");
                     dni = teclado.nextLine();
@@ -80,13 +92,13 @@ public class AppNominas {
                         System.out.println("No se ha podido incluir al empleado en el sistema.");
                     }
                     System.out.println("-------------------------------------");
-                    }catch(DniException ex){
-                        System.out.println(ex.getMessage());
-                    }
-                    break;
+                } catch (DniException ex) {
+                    System.out.println(ex.getMessage());
+                }
+                break;
 
-                 case 3:
-                     try{
+                case 3:
+                     try {
                     System.out.println("3.Consultar empleado");
                     System.out.println("Introduzca dni para consultar empleado.");
                     dni = teclado.nextLine();
@@ -97,17 +109,17 @@ public class AppNominas {
                         System.out.println("No se ha encontrado un empleado con este dni.");
                     }
                     System.out.println("-------------------------------------");
-                     }catch(DniException ex){
-                        System.out.println(ex.getMessage());
-                    }
-                    break;
+                } catch (DniException ex) {
+                    System.out.println(ex.getMessage());
+                }
+                break;
 
                 case 4:
-                    try{
+                    try {
                     System.out.println("4.Eliminar empleado");
                     System.out.println("Introduzca dni del empleado.");
                     Empleado desempleado;
-                    dni=teclado.nextLine();
+                    dni = teclado.nextLine();
                     dni2 = Dni.valueOf(dni);
                     desempleado = sn.getEmpleado(dni2);
                     System.out.println(desempleado);
@@ -124,10 +136,10 @@ public class AppNominas {
                         System.out.println("No se ha encontrado un empleado con este dni.");
                     }
                     System.out.println("-------------------------------------");
-                    }catch(DniException ex){
-                        System.out.println(ex.getMessage());
-                    }
-                    break;
+                } catch (DniException ex) {
+                    System.out.println(ex.getMessage());
+                }
+                break;
 
                 case 5:
                     for (Empleado empleado1 : sn.listarEmpleados()) {
@@ -153,6 +165,48 @@ public class AppNominas {
                     System.out.println("8.Consultar total salarios");
                     System.out.println("Total salarios:" + sn.getTotalSalarios());
                     System.out.println("-------------------------------------");
+                    break;
+
+                case 9:
+                    System.out.println("9.Guardar empleados");
+                    System.out.println("Para guardar empleados introduzca el nombre del archivo de destino:");
+                    archivo = teclado.nextLine();
+                    EmpleadoDao ed;
+                    int posicion = archivo.lastIndexOf(".") + 1;
+                    String extension = archivo.substring(posicion);
+                    switch (extension) {
+                        case "csv":
+                            ed = new EmpleadoDaoCsv(extension);
+                            break;
+                        /*case "obj":
+                            ed = new EmpleadoDaoObj(extension);
+                            break;
+                        case "xml":
+                            ed = new EmpleadoDaoXml(extension);
+                            break;
+                        case "json":
+                            ed = new EmpleadoDaoJson(extension);
+                            break;*/
+                    }
+                    sn.setEmpleadoDao(new EmpleadoDaoCsv(archivo));
+                    try {
+                        /*EmpleadoDaoCsv empleadoDao = new EmpleadoDaoCsv(archivo);*/
+                        sn.guardarEmpleados();
+                    } catch (DaoException ex) {
+                        System.out.println(ex/*.getMessage()*/);
+                    }
+                    break;
+
+                case 10:
+                    System.out.println("10.Cargar empleados");
+                    System.out.println("Para cargar empleados introduzca el nombre del archivo origen:");
+                    archivo = teclado.nextLine();
+                    try {
+                        sn.setEmpleadoDao(new EmpleadoDaoCsv(archivo));
+                        sn.cargarEmpleados();
+                    } catch (DaoException ex) {
+                        System.out.println(ex/*.getMessage()*/);
+                    }
                     break;
 
                 case 0:

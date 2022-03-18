@@ -1,4 +1,7 @@
+package es.sauces.aplicacionNomina1;
 
+
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,7 +16,7 @@ import java.util.regex.Pattern;
  *
  * @author daw1
  */
-public class Dni implements Comparable<Dni>{
+public class Dni implements Comparable<Dni>,Serializable{
     private String numero;
     private char letra;
 
@@ -46,7 +49,7 @@ public class Dni implements Comparable<Dni>{
         if(!esValido(dni)){
             throw new DniException("Formato incorrecto DNI");
         }
-        this.numero=(dni.substring(0,7));
+        this.numero=(dni.substring(0,8));
         this.letra=(dni.charAt(8));
     }
     

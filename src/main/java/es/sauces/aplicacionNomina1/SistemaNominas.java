@@ -1,3 +1,5 @@
+package es.sauces.aplicacionNomina1;
+
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,19 +9,28 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- *@version 1.3
+ * @version 1.3
  * @since 16/02/2022
  * @author Ricardo Santiago Tomé
  */
 public class SistemaNominas {
 
-    private Map<Dni,Empleado> empleados;
+    private Map<Dni, Empleado> empleados;
+    private EmpleadoDao empleadoDao;
 
     /**
      *
      */
     public SistemaNominas() {
         empleados = new TreeMap<>();
+    }
+
+    public EmpleadoDao getEmpleadoDao() {
+        return empleadoDao;
+    }
+
+    public void setEmpleadoDao(EmpleadoDao empleadoDao) {
+        this.empleadoDao = empleadoDao;
     }
 
     /**
@@ -29,7 +40,7 @@ public class SistemaNominas {
      */
     public boolean incluirEmpleado(Empleado empleado) {
         boolean salida = false;
-        if (empleados.putIfAbsent(empleado.getDni(), empleado)==null) {
+        if (empleados.putIfAbsent(empleado.getDni(), empleado) == null) {
             salida = true;
         }
         return salida;
@@ -39,7 +50,7 @@ public class SistemaNominas {
      *
      * @return
      */
-    public Map<Dni,Empleado> getEmpleados() {
+    public Map<Dni, Empleado> getEmpleados() {
         return empleados;
     }
 
@@ -49,27 +60,27 @@ public class SistemaNominas {
      * @return
      */
     public Empleado getEmpleado(Dni dni) {
-        if (empleados.containsKey(dni)){
+        if (empleados.containsKey(dni)) {
             return empleados.get(dni);
         }
         return null;
     }
-    
+
     /**
      *
      * @param dni
      * @return
      * @throws DniException
      */
-    public Empleado getEmpleado(String dni) throws DniException{
-            return empleados.get(Dni.valueOf(dni));
+    public Empleado getEmpleado(String dni) throws DniException {
+        return empleados.get(Dni.valueOf(dni));
     }
 
     /**
      *
      * @param empleados
      */
-    public void setEmpleados(Map<Dni,Empleado> empleados) {
+    public void setEmpleados(Map<Dni, Empleado> empleados) {
         this.empleados = empleados;
     }
 
@@ -79,7 +90,7 @@ public class SistemaNominas {
      * @return
      */
     public boolean eliminarEmpleado(Empleado e) {
-        return empleados.remove(e.getDni())!=null;
+        return empleados.remove(e.getDni()) != null;
     }
 
     /**
@@ -99,7 +110,7 @@ public class SistemaNominas {
         Collections.sort(lista, new ComparadorSueldo());
         return lista;
     }
-    
+
     /**
      *
      * @return
@@ -122,18 +133,40 @@ public class SistemaNominas {
      */
     public float getTotalSalarios() {
         float acumulador = 0;
-        
+
         //con ListIterator
         /*ListIterator<Empleado> li=empleados.listIterator();
         
         while(li.hasNext()){
             acumulador+=li.next().ingresos();
         }*/
-
         for (Empleado e : empleados.values()) {
             acumulador += e.ingresos();
         }
         return acumulador;
+    }
+
+    public int guardarEmpleados() throws DaoException {
+        int n = 0;
+        if (empleadoDao != null) {
+            n = empleadoDao.insertar(listarEmpleados());
+        }
+
+        return n;
+    }
+
+    public int cargarEmpleados() throws DaoException {
+        int n = 0;
+        if (empleadoDao != null) {
+            List<Empleado> listado = empleadoDao.listar();
+            for (Empleado e : listado) {
+                if (incluirEmpleado(e)) {
+                    n++;
+                }
+            }
+        }
+
+        return n;
     }
 
 }

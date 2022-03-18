@@ -1,5 +1,4 @@
-
-import java.util.List;
+package es.sauces.aplicacionNomina1;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -11,9 +10,14 @@ import java.util.List;
  *
  * @author daw1
  */
-public interface EmpleadoDao {
-    
-    List<Empleado> listar() throws DaoException;
-    int insertar(List<Empleado> listado)throws DaoException;
+public class DniException extends Exception{
+
+    /**
+     *
+     * @param message
+     */
+    public DniException(String message) {
+        super(message);
+    }
     
 }
