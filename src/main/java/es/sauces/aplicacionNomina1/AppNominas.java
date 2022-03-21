@@ -14,6 +14,7 @@ import java.util.Scanner;
 /**
  *
  * @author Ricardo Santiago Tomé
+ * @version 1.0
  */
 public class AppNominas {
 
