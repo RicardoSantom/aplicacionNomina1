@@ -1,14 +1,8 @@
 package es.sauces.aplicacionNomina1;
 
-
 import java.io.Serializable;
 import java.util.Objects;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author Ricardo Santiago Tomé
@@ -19,7 +13,7 @@ public abstract class Empleado implements Comparable<Empleado>,Serializable {
     private String nombre;
 
     /**
-     *
+     *Constructor sin parámetros para instanciar un Empleado
      */
     public Empleado() {
 
@@ -27,8 +21,10 @@ public abstract class Empleado implements Comparable<Empleado>,Serializable {
 
     /**
      *
-     * @param dni
-     * @param nombre
+     * @param dni de tipo Dni, representa el Dni del empleado.
+     * @param nombre de tipo String, establece el nombre del empleado.
+     * Constructor de instancias de la clase Empleado compuestos de un Dni
+     * y un mombre.
      */
     public Empleado(Dni dni, String nombre) {
         this.dni = dni;
@@ -42,7 +38,7 @@ public abstract class Empleado implements Comparable<Empleado>,Serializable {
 
     /**
      *
-     * @return
+     * @return  dni de una instancia de Empleado.
      */
     public Dni getDni() {
         return dni;
@@ -50,7 +46,7 @@ public abstract class Empleado implements Comparable<Empleado>,Serializable {
 
     /**
      *
-     * @param dni
+     * @param dni modifica el dni establecido de los objetos Empleado.
      */
     public void setDni(Dni dni) {
         this.dni = dni;
@@ -58,7 +54,7 @@ public abstract class Empleado implements Comparable<Empleado>,Serializable {
 
     /**
      *
-     * @return
+     * @return nombre de los objetos Empleados
      */
     public String getNombre() {
         return nombre;
@@ -66,12 +62,13 @@ public abstract class Empleado implements Comparable<Empleado>,Serializable {
 
     /**
      *
-     * @param nombre
+     * @param nombre modifica el nombre de los objetos empleado.
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    @Override
     public int compareTo(Empleado empleado) {
         return this.dni.compareTo(empleado.dni);
     }
@@ -102,7 +99,7 @@ public abstract class Empleado implements Comparable<Empleado>,Serializable {
 
     /**
      *
-     * @return
+     * @return metodo abstracto que declara ingresos para los Empleados.
      */
     public abstract float ingresos();
 

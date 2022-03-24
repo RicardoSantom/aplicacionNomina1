@@ -49,10 +49,8 @@ public class EmpleadoDaoCsv implements EmpleadoDao {
                 linea=entrada.readLine();
             }
             
-        }catch (IOException ex) {
-           throw new DaoException(ex.getMessage());
-        }catch(DniException de){
-            throw new DaoException(de.getMessage());
+        }catch (DniException | IOException  ex) {
+           throw new DaoException(ex.toString());
         }catch(Exception ex){
             throw new DaoException("Formato incorrecto");
         }

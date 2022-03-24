@@ -13,26 +13,34 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*import java.util.logging.Level;
+import java.util.logging.Logger;*/
 /**
  *
- * @author Usuario
+ * @author Ricardo Santiago Tomé
  */
 public class EmpleadoDaoJson implements EmpleadoDao {
 
     private Path path;
 
-    public EmpleadoDaoJson(Path path) {
+    public EmpleadoDaoJson(String path) {
+        this.path = Paths.get(path);
+    }
+
+    public Path getPath() {
+        return path;
+    }
+
+    public void setPath(Path path) {
         this.path = path;
     }
 
+    /**
+     *
+     * @return
+     * @throws DaoException
+     */
+    @Override
     public List<Empleado> listar() throws DaoException {
         Type tipo = new TypeToken<List<Empleado>>() {
         }.getType();
@@ -45,7 +53,6 @@ public class EmpleadoDaoJson implements EmpleadoDao {
         builder.registerTypeAdapterFactory(empleadoAdapter);
         Gson gson = builder.create();
         List<Empleado> listadoEmpleados;
-        Path path = Paths.get("empleados.json");
         try (BufferedReader br = Files.newBufferedReader(path)) {
             listadoEmpleados = gson.fromJson(br, tipo);
         } catch (IOException ex) {
@@ -65,11 +72,9 @@ public class EmpleadoDaoJson implements EmpleadoDao {
         builder.setPrettyPrinting();
         builder.registerTypeAdapterFactory(empleadoAdapter);
         Gson gson = builder.create();
-        List<Empleado> listadoEmpleados = listado;
-        Path path = Paths.get("empleados.json");
 
         try (BufferedWriter bw = Files.newBufferedWriter(path)) {
-            gson.toJson(listadoEmpleados, tipo, bw);
+            gson.toJson(listado, tipo, bw);
         } catch (IOException ex) {
             throw new DaoException(ex.getMessage());
         }

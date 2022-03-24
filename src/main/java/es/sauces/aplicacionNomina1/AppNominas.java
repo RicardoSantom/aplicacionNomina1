@@ -1,13 +1,12 @@
 package es.sauces.aplicacionNomina1;
 
-
-import java.io.BufferedWriter;
+/*import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Paths;*/
 import java.util.List;
 import java.util.Scanner;
 
@@ -170,54 +169,59 @@ public class AppNominas {
                     break;
 
                 case 9:
-                    System.out.println("9.Guardar empleados");
-                    System.out.println("Para guardar empleados introduzca el nombre del archivo de destino:");
+                    System.out.println("8.-Guardar Empleados");
+                    System.out.println("Introduce el nombre del fichero a guardar");
                     archivo = teclado.nextLine();
-                    EmpleadoDao ed;
-                    int posicion = archivo.lastIndexOf(".") + 1;
-                    String extension = archivo.substring(posicion);
-                    switch (extension) {
-                        case "csv":
-                            ed = new EmpleadoDaoCsv(extension);
-                            break;
-                        /*case "obj":
-                            ed = new EmpleadoDaoObj(extension);
-                            break;
-                        case "xml":
-                            ed = new EmpleadoDaoXml(extension);
-                            break;
-                        case "json":
-                            ed = new EmpleadoDaoJson(extension);
-                            break;*/
-                    }
-                    sn.setEmpleadoDao(new EmpleadoDaoCsv(archivo));
+                    sn.setEmpleadoDao(getDao(archivo));
                     try {
-                        /*EmpleadoDaoCsv empleadoDao = new EmpleadoDaoCsv(archivo);*/
-                        sn.guardarEmpleados();
+                        int n = sn.guardarEmpleados();
+                        System.out.println("Se han guardado " + n + " empleados");
                     } catch (DaoException ex) {
-                        System.out.println(ex/*.getMessage()*/);
+                        System.out.println(ex.getMessage());
                     }
                     break;
-
                 case 10:
                     System.out.println("10.Cargar empleados");
                     System.out.println("Para cargar empleados introduzca el nombre del archivo origen:");
                     archivo = teclado.nextLine();
+                    sn.setEmpleadoDao(getDao(archivo));
+                    int n;
                     try {
-                        sn.setEmpleadoDao(new EmpleadoDaoCsv(archivo));
-                        sn.cargarEmpleados();
-                    } catch (DaoException ex) {
-                        System.out.println(ex/*.getMessage()*/);
+                        n = sn.cargarEmpleados();
+                        System.out.println("Se ha cargado " + n + " empleados");
+                    } catch (DaoException de) {
+                        System.out.println(de.getMessage());
                     }
                     break;
 
+                default:
+                    System.out.println("Opcion no disponible");
                 case 0:
                     System.out.println("Hasta pronto.");
                     break;
-                default:
-                    System.out.println("Opción incorrecta.");
-                    System.out.println("-------------------------------------");
             }
         } while (opcion != 0);
+    }
+
+    private static EmpleadoDao getDao(String archivo) {
+        EmpleadoDao ed = null;
+        int posicion = archivo.lastIndexOf(".") + 1;
+        String extension;
+        extension = archivo.substring(posicion);
+        switch (extension) {
+            case "csv":
+                ed = new EmpleadoDaoCsv(archivo);
+                break;
+            case "obj":
+                ed = new EmpleadoDaoObj(archivo);
+                break;
+            case "xml":
+                ed = new EmpleadoDaoXml(archivo);
+                break;
+            case "json":
+                ed = new EmpleadoDaoJson(archivo);
+                break;
+        }
+        return ed;
     }
 }

@@ -148,10 +148,10 @@ public class SistemaNominas {
 
     public int guardarEmpleados() throws DaoException {
         int n = 0;
-        if (empleadoDao != null) {
-            n = empleadoDao.insertar(listarEmpleados());
+        if (empleadoDao == null) {
+            throw new DaoException("No se ha establecido un archivo");
         }
-
+         n = empleadoDao.insertar(listarEmpleados());
         return n;
     }
 
@@ -164,7 +164,7 @@ public class SistemaNominas {
                     n++;
                 }
             }
-        }
+        }else throw new DaoException("No existe el archivo");
 
         return n;
     }
