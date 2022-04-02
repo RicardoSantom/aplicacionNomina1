@@ -9,12 +9,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+
 /**
  *
  * @author Ricardo Santiago Tomé
  */
-public class EmpleadoDaoXml implements EmpleadoDao{
-   private Path path;
+public class EmpleadoDaoXml implements EmpleadoDao {
+
+    private Path path;
 
     public EmpleadoDaoXml(String path) {
         this.path = Paths.get(path);
@@ -26,39 +28,39 @@ public class EmpleadoDaoXml implements EmpleadoDao{
 
     public void setPath(Path path) {
         this.path = path;
-    } 
+    }
+
     /**
      *
-     * @return 
-     * @throws DaoException 
+     * @return @throws DaoException
      */
     @Override
     public List<Empleado> listar() throws DaoException {
-        XStream xstream=new XStream(new DomDriver());    
-        XStream.setupDefaultSecurity(xstream);
+        XStream xstream = new XStream(new DomDriver());
+        /*XStream.setupDefaultSecurity(xstream);*/
         xstream.allowTypeHierarchy(EmpleadoFijo.class);
         xstream.allowTypeHierarchy(EmpleadoEventual.class);
         List<Empleado> listadoEmpleados;
-        try(BufferedReader br= Files.newBufferedReader(path);){
-            listadoEmpleados=(List<Empleado>)xstream.fromXML(br);
+        try (BufferedReader br = Files.newBufferedReader(path);) {
+            listadoEmpleados = (List<Empleado>) xstream.fromXML(br);
         } catch (IOException ex) {
-            throw  new DaoException(ex.getMessage());
+            throw new DaoException(ex.getMessage());
         }
         return listadoEmpleados;
     }
 
     @Override
     public int insertar(List<Empleado> listado) throws DaoException {
-        XStream xstream=new XStream(new DomDriver());    
-        XStream.setupDefaultSecurity(xstream);
+        XStream xstream = new XStream(new DomDriver());
+        //XStream.setupDefaultSecurity(xstream);
         xstream.allowTypeHierarchy(EmpleadoFijo.class);
         xstream.allowTypeHierarchy(EmpleadoEventual.class);
-        try(BufferedWriter bw=Files.newBufferedWriter(path)){
-            xstream.toXML(listado,bw);
+        try (BufferedWriter bw = Files.newBufferedWriter(path)) {
+            xstream.toXML(listado, bw);
         } catch (IOException ex) {
-            throw  new DaoException(ex.getMessage());
+            throw new DaoException(ex.getMessage());
         }
         return listado.size();
     }
-    
+
 }
