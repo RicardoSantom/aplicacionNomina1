@@ -1,4 +1,4 @@
-package es.sauces.aplicacionNomina1;
+package es.sauces.aplicacionNomina1.modelo;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;

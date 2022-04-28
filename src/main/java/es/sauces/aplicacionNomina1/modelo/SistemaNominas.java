@@ -1,4 +1,4 @@
-package es.sauces.aplicacionNomina1;
+package es.sauces.aplicacionNomina1.modelo;
 
 
 import java.util.ArrayList;
@@ -99,6 +99,15 @@ public class SistemaNominas {
      */
     public List<Empleado> listarEmpleados() {
         return new ArrayList<>(empleados.values());
+    }
+    
+    /**
+     * @return
+     */
+    public List<Empleado> listarEmpleadosPorDNI() {
+        List<Empleado> lista = new ArrayList<>(empleados.values());
+        Collections.sort(lista);
+        return lista;
     }
 
     /**

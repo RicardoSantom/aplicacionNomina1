@@ -1,4 +1,4 @@
-package es.sauces.aplicacionNomina1;
+package es.sauces.aplicacionNomina1.modelo;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

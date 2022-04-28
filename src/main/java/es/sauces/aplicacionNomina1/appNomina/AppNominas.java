@@ -1,4 +1,4 @@
-package es.sauces.aplicacionNomina1;
+package es.sauces.aplicacionNomina1.appNomina;
 
 /*import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -7,6 +7,18 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;*/
+import es.sauces.aplicacionNomina1.modelo.DaoException;
+import es.sauces.aplicacionNomina1.modelo.Dni;
+import es.sauces.aplicacionNomina1.modelo.DniException;
+import es.sauces.aplicacionNomina1.modelo.Empleado;
+import es.sauces.aplicacionNomina1.modelo.EmpleadoDao;
+import es.sauces.aplicacionNomina1.modelo.EmpleadoDaoCsv;
+import es.sauces.aplicacionNomina1.modelo.EmpleadoDaoJson;
+import es.sauces.aplicacionNomina1.modelo.EmpleadoDaoObj;
+import es.sauces.aplicacionNomina1.modelo.EmpleadoDaoXml;
+import es.sauces.aplicacionNomina1.modelo.EmpleadoEventual;
+import es.sauces.aplicacionNomina1.modelo.EmpleadoFijo;
+import es.sauces.aplicacionNomina1.modelo.SistemaNominas;
 import java.util.List;
 import java.util.Scanner;
 
