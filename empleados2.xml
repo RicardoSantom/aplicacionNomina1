@@ -1,0 +1,18 @@
+<list>
+  <es.sauces.aplicacionNomina1.EmpleadoFijo>
+    <dni>
+      <numero>71013659</numero>
+      <letra>D</letra>
+    </dni>
+    <nombre>Ricardo</nombre>
+    <salario>120.0</salario>
+  </es.sauces.aplicacionNomina1.EmpleadoFijo>
+  <es.sauces.aplicacionNomina1.EmpleadoFijo>
+    <dni>
+      <numero>78022371</numero>
+      <letra>T</letra>
+    </dni>
+    <nombre>Adolfo</nombre>
+    <salario>10.0</salario>
+  </es.sauces.aplicacionNomina1.EmpleadoFijo>
+</list>

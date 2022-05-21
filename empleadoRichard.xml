@@ -1,10 +1,10 @@
 <list>
-  <es.sauces.aplicacionNomina1.EmpleadoFijo>
+  <es.sauces.aplicacionNomina1.modelo.EmpleadoFijo>
     <dni>
       <numero>71013659</numero>
       <letra>D</letra>
     </dni>
     <nombre>Richard</nombre>
     <salario>100.0</salario>
-  </es.sauces.aplicacionNomina1.EmpleadoFijo>
+  </es.sauces.aplicacionNomina1.modelo.EmpleadoFijo>
 </list>

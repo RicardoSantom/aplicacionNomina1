@@ -460,8 +460,8 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     public void listarEmpleados(List<Empleado> listado) {
-        limpiarCampos();
         empleadoTM.setListado(listado);
+        empleadoTM.fireTableDataChanged();
     }
 
     public String getArchivo() {

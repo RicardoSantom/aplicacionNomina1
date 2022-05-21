@@ -1,0 +1,41 @@
+[
+  {
+    "type": "Eventual",
+    "salarioHora": 10.0,
+    "horas": 31,
+    "dni": {
+      "numero": "12345678",
+      "letra": "Z"
+    },
+    "nombre": "Inventado2"
+  },
+  {
+    "type": "Eventual",
+    "salarioHora": 10.0,
+    "horas": 0,
+    "dni": {
+      "numero": "46911299",
+      "letra": "Q"
+    },
+    "nombre": "Inventado"
+  },
+  {
+    "type": "Fijo",
+    "salario": 100.0,
+    "dni": {
+      "numero": "71013659",
+      "letra": "D"
+    },
+    "nombre": "Richard"
+  },
+  {
+    "type": "Eventual",
+    "salarioHora": 10.0,
+    "horas": 0,
+    "dni": {
+      "numero": "78022371",
+      "letra": "T"
+    },
+    "nombre": "Adolfo"
+  }
+]

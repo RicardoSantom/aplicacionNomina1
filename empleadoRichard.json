@@ -1,0 +1,11 @@
+[
+  {
+    "type": "Fijo",
+    "salario": 100.0,
+    "dni": {
+      "numero": "71013659",
+      "letra": "D"
+    },
+    "nombre": "Richard"
+  }
+]

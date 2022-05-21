@@ -59,7 +59,7 @@ public class SistemaNominas {
      * @param dni
      * @return
      */
-    public Empleado getEmpleado(Dni dni) {
+    public Empleado getEmpleado(Dni dni) throws DniException {
         if (empleados.containsKey(dni)) {
             return empleados.get(dni);
         }
