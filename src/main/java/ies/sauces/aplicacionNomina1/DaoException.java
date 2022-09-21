@@ -1,4 +1,4 @@
-package es.sauces.aplicacionNomina1;
+package ies.sauces.aplicacionNomina1;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,13 +10,9 @@ package es.sauces.aplicacionNomina1;
  *
  * @author daw1
  */
-public class DniException extends Exception{
+public class DaoException extends Exception{
 
-    /**
-     *
-     * @param message
-     */
-    public DniException(String message) {
+    public DaoException(String message) {
         super(message);
     }
     
